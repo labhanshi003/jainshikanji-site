@@ -248,7 +248,7 @@
         "status": "served"
       }
     ],
-    "status": "active",
+    "status": "completed",
     "source": "qr",
     "createdAt": "2026-09-14T05:42:17.399Z",
     "subtotal": 365,
@@ -257,5 +257,93 @@
     "estimatedReadyAt": "2026-09-14T06:00:17.399Z",
     "paymentMethod": "upi",
     "paymentStatus": "paid"
+  },
+  {
+    "id": "o1789422249158",
+    "tableId": "t5",
+    "tableName": "Counter 1",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "served"
+      },
+      {
+        "menuItemId": "s2",
+        "name": "Aloo Pakoda",
+        "quantity": 1,
+        "price": 70,
+        "status": "served"
+      },
+      {
+        "menuItemId": "m2",
+        "name": "Pav Bhaji",
+        "quantity": 1,
+        "price": 120,
+        "status": "served"
+      },
+      {
+        "menuItemId": "m1",
+        "name": "Chole Bhature",
+        "quantity": 1,
+        "price": 130,
+        "status": "served"
+      }
+    ],
+    "status": "completed",
+    "source": "qr",
+    "createdAt": "2026-09-14T21:44:09.158Z",
+    "subtotal": 360,
+    "tax": 18,
+    "total": 378,
+    "estimatedReadyAt": "2026-09-14T22:00:09.158Z",
+    "paymentMethod": "upi",
+    "paymentStatus": "paid"
+  },
+  {
+    "id": "o1789422773709",
+    "tableId": "t1",
+    "tableName": "Table 1",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "pending"
+      },
+      {
+        "menuItemId": "d2",
+        "name": "Masala Shikanji",
+        "quantity": 1,
+        "price": 45,
+        "status": "pending"
+      },
+      {
+        "menuItemId": "s1",
+        "name": "Paneer Pakoda",
+        "quantity": 1,
+        "price": 90,
+        "status": "pending"
+      },
+      {
+        "menuItemId": "s2",
+        "name": "Aloo Pakoda",
+        "quantity": 1,
+        "price": 70,
+        "status": "pending"
+      }
+    ],
+    "status": "active",
+    "source": "qr",
+    "createdAt": "2026-09-14T21:52:53.709Z",
+    "subtotal": 245,
+    "tax": 12,
+    "total": 257,
+    "estimatedReadyAt": "2026-09-14T22:08:53.709Z",
+    "paymentMethod": "upi",
+    "paymentStatus": "pending"
   }
 ]
