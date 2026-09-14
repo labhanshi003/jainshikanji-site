@@ -4,7 +4,7 @@
     "name": "Table 1",
     "area": "Indoor",
     "seats": 4,
-    "status": "occupied"
+    "status": "free"
   },
   {
     "id": "t2",
@@ -32,6 +32,6 @@
     "name": "Counter 1",
     "area": "Counter",
     "seats": 1,
-    "status": "occupied"
+    "status": "free"
   }
 ]

@@ -9,31 +9,31 @@
         "name": "Classic Jain Shikanji",
         "quantity": 1,
         "price": 40,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "d2",
         "name": "Masala Shikanji",
         "quantity": 1,
         "price": 45,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "s1",
         "name": "Paneer Pakoda",
         "quantity": 1,
         "price": 90,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "m1",
         "name": "Chole Bhature",
         "quantity": 1,
         "price": 130,
-        "status": "ready"
+        "status": "served"
       }
     ],
-    "status": "active",
+    "status": "completed",
     "source": "qr",
     "createdAt": "2026-09-13T08:18:46.003Z",
     "subtotal": 305,
@@ -53,7 +53,7 @@
         "name": "Classic Jain Shikanji",
         "quantity": 1,
         "price": 40,
-        "status": "ready"
+        "status": "served"
       }
     ],
     "status": "active",
@@ -76,21 +76,21 @@
         "name": "Classic Jain Shikanji",
         "quantity": 1,
         "price": 40,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "d2",
         "name": "Masala Shikanji",
         "quantity": 1,
         "price": 45,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "s1",
         "name": "Paneer Pakoda",
         "quantity": 1,
         "price": 90,
-        "status": "ready"
+        "status": "served"
       }
     ],
     "status": "active",
@@ -113,14 +113,14 @@
         "name": "Masala Shikanji",
         "quantity": 1,
         "price": 45,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "d1",
         "name": "Classic Jain Shikanji",
         "quantity": 1,
         "price": 40,
-        "status": "ready"
+        "status": "served"
       }
     ],
     "status": "active",
@@ -143,31 +143,31 @@
         "name": "Paneer Pakoda",
         "quantity": 1,
         "price": 90,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "d2",
         "name": "Masala Shikanji",
         "quantity": 1,
         "price": 45,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "d1",
         "name": "Classic Jain Shikanji",
         "quantity": 1,
         "price": 40,
-        "status": "ready"
+        "status": "served"
       },
       {
         "menuItemId": "m1",
         "name": "Chole Bhature",
         "quantity": 1,
         "price": 130,
-        "status": "ready"
+        "status": "served"
       }
     ],
-    "status": "active",
+    "status": "completed",
     "source": "qr",
     "createdAt": "2026-09-13T15:23:32.936Z",
     "subtotal": 305,
@@ -176,5 +176,35 @@
     "estimatedReadyAt": "2026-09-13T15:39:32.936Z",
     "paymentMethod": "upi",
     "paymentStatus": "paid"
+  },
+  {
+    "id": "o1789359121996",
+    "tableId": "t2",
+    "tableName": "Table 2",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "pending"
+      },
+      {
+        "menuItemId": "s1",
+        "name": "Paneer Pakoda",
+        "quantity": 1,
+        "price": 90,
+        "status": "pending"
+      }
+    ],
+    "status": "active",
+    "source": "waiter",
+    "createdAt": "2026-09-14T04:12:01.996Z",
+    "subtotal": 130,
+    "tax": 7,
+    "total": 137,
+    "estimatedReadyAt": "2026-09-14T04:24:01.996Z",
+    "paymentMethod": "cash",
+    "paymentStatus": "pending"
   }
 ]
