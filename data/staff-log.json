@@ -1,0 +1,17 @@
+[
+  {
+    "staffName": "Rohit",
+    "action": "Open Shop",
+    "loggedAt": "2026-09-13T08:21:28.180Z"
+  },
+  {
+    "staffName": "Kartik",
+    "action": "Enter to shop",
+    "loggedAt": "2026-09-13T08:21:57.024Z"
+  },
+  {
+    "staffName": "Rishi",
+    "action": "On Leave ",
+    "loggedAt": "2026-09-13T08:22:20.503Z"
+  }
+]

@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+data/contact-leads.json
+data/newsletter.json
+*.log

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "d1",
+    "category": "Signature Drinks",
+    "name": "Classic Jain Shikanji",
+    "description": "Our original 1957 recipe \u2014 jambiri lemon, black pepper, cumin, black salt.",
+    "price": 40,
+    "photo": "/images/menu/classic-shikanji.jpg",
+    "available": true
+  },
+  {
+    "id": "d2",
+    "category": "Signature Drinks",
+    "name": "Masala Shikanji",
+    "description": "Extra spiced version with a stronger kick of black pepper and mint.",
+    "price": 45,
+    "photo": "/images/menu/masala-shikanji.jpg",
+    "available": true
+  },
+  {
+    "id": "s1",
+    "category": "Legendary Snacks",
+    "name": "Paneer Pakoda",
+    "description": "The iconic pairing since 1996 \u2014 hot, crispy, served with mint chutney.",
+    "price": 90,
+    "photo": "/images/menu/paneer-pakoda.jpg",
+    "available": true
+  },
+  {
+    "id": "s2",
+    "category": "Legendary Snacks",
+    "name": "Aloo Pakoda",
+    "description": "Crispy spiced potato fritters.",
+    "price": 70,
+    "photo": "/images/menu/aloo-pakoda.jpg",
+    "available": true
+  },
+  {
+    "id": "m1",
+    "category": "Hearty Meals",
+    "name": "Chole Bhature",
+    "description": "A Jain Shikanji restaurant favourite.",
+    "price": 130,
+    "photo": "/images/menu/chole-bhature.jpg",
+    "available": true
+  },
+  {
+    "id": "m2",
+    "category": "Hearty Meals",
+    "name": "Pav Bhaji",
+    "description": "Buttery, spiced mixed-vegetable mash with soft pav.",
+    "price": 120,
+    "photo": "/images/menu/pav-bhaji.jpg",
+    "available": true
+  }
+]

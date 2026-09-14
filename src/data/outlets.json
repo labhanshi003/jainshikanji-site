@@ -1,0 +1,18 @@
+[
+  {
+    "id": "o1",
+    "name": "Jain Shikanji — Mother Branch",
+    "address": "Kadrabad, Vikash Nagar Colony, Delhi Meerut Road, Modinagar, Ghaziabad – 201201",
+    "phone": "+91-9219448748",
+    "mapLink": "https://maps.google.com/?q=Jain+Shikanji+Modinagar",
+    "hours": "9:00 AM – 10:00 PM, all days"
+  },
+  {
+    "id": "o2",
+    "name": "Jain Shikanji — Kadrabad AC Outlet",
+    "address": "Kadrabad, Modinagar, Ghaziabad",
+    "phone": "+91-9219448748",
+    "mapLink": "https://maps.google.com/?q=Jain+Shikanji+Kadrabad",
+    "hours": "9:00 AM – 10:00 PM, all days"
+  }
+]

@@ -1,0 +1,180 @@
+[
+  {
+    "id": "o1789287526003",
+    "tableId": "t1",
+    "tableName": "Table 1",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "d2",
+        "name": "Masala Shikanji",
+        "quantity": 1,
+        "price": 45,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "s1",
+        "name": "Paneer Pakoda",
+        "quantity": 1,
+        "price": 90,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "m1",
+        "name": "Chole Bhature",
+        "quantity": 1,
+        "price": 130,
+        "status": "ready"
+      }
+    ],
+    "status": "active",
+    "source": "qr",
+    "createdAt": "2026-09-13T08:18:46.003Z",
+    "subtotal": 305,
+    "tax": 15,
+    "total": 320,
+    "estimatedReadyAt": "2026-09-13T08:34:46.004Z",
+    "paymentMethod": "upi",
+    "paymentStatus": "paid"
+  },
+  {
+    "id": "o1789287754001",
+    "tableId": "t1",
+    "tableName": "Table 1",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "ready"
+      }
+    ],
+    "status": "active",
+    "source": "qr",
+    "createdAt": "2026-09-13T08:22:34.001Z",
+    "subtotal": 40,
+    "tax": 2,
+    "total": 42,
+    "estimatedReadyAt": "2026-09-13T08:32:34.001Z",
+    "paymentMethod": "cash",
+    "paymentStatus": "pending"
+  },
+  {
+    "id": "o1789311647240",
+    "tableId": "t4",
+    "tableName": "Table 4",
+    "items": [
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "d2",
+        "name": "Masala Shikanji",
+        "quantity": 1,
+        "price": 45,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "s1",
+        "name": "Paneer Pakoda",
+        "quantity": 1,
+        "price": 90,
+        "status": "ready"
+      }
+    ],
+    "status": "active",
+    "source": "waiter",
+    "createdAt": "2026-09-13T15:00:47.240Z",
+    "subtotal": 175,
+    "tax": 9,
+    "total": 184,
+    "estimatedReadyAt": "2026-09-13T15:14:47.240Z",
+    "paymentMethod": "cash",
+    "paymentStatus": "pending"
+  },
+  {
+    "id": "o1789311657466",
+    "tableId": "t3",
+    "tableName": "Table 3",
+    "items": [
+      {
+        "menuItemId": "d2",
+        "name": "Masala Shikanji",
+        "quantity": 1,
+        "price": 45,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "ready"
+      }
+    ],
+    "status": "active",
+    "source": "waiter",
+    "createdAt": "2026-09-13T15:00:57.466Z",
+    "subtotal": 85,
+    "tax": 4,
+    "total": 89,
+    "estimatedReadyAt": "2026-09-13T15:12:57.466Z",
+    "paymentMethod": "cash",
+    "paymentStatus": "pending"
+  },
+  {
+    "id": "o1789313012936",
+    "tableId": "t5",
+    "tableName": "Counter 1",
+    "items": [
+      {
+        "menuItemId": "s1",
+        "name": "Paneer Pakoda",
+        "quantity": 1,
+        "price": 90,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "d2",
+        "name": "Masala Shikanji",
+        "quantity": 1,
+        "price": 45,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "d1",
+        "name": "Classic Jain Shikanji",
+        "quantity": 1,
+        "price": 40,
+        "status": "ready"
+      },
+      {
+        "menuItemId": "m1",
+        "name": "Chole Bhature",
+        "quantity": 1,
+        "price": 130,
+        "status": "ready"
+      }
+    ],
+    "status": "active",
+    "source": "qr",
+    "createdAt": "2026-09-13T15:23:32.936Z",
+    "subtotal": 305,
+    "tax": 15,
+    "total": 320,
+    "estimatedReadyAt": "2026-09-13T15:39:32.936Z",
+    "paymentMethod": "upi",
+    "paymentStatus": "paid"
+  }
+]

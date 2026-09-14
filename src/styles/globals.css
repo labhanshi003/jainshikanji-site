@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-800;
+}
+
+/* Elegant serif for customer-facing headings (Playfair Display, loaded in
+   _app.tsx and exposed as --font-display). Scoped to a wrapper class rather
+   than a bare "h1, h2" rule so Admin/Kitchen/Waiter — which don't load the
+   font and want a clean functional look — are never affected. */
+.customer-scope h1,
+.customer-scope h2,
+.customer-scope h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  letter-spacing: -0.01em;
+}
