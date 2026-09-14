@@ -162,6 +162,42 @@ kitchen marks every item ready.
   `/waiter/order/[id]`), mark one of its items ready on `/kitchen`, then open
   `/waiter` — that table shows a pulsing "Ready to serve!" badge.
 
+## Auth (staff login)
+
+`/admin`, `/kitchen`, and `/waiter` are password-protected via Next.js
+middleware (`src/middleware.ts`) checking an HttpOnly `staff_role` cookie.
+This is prototype-level auth — one shared password per role (from env vars),
+not per-staff accounts — but it's a real, tested access gate, not a stub.
+
+**Setup**: copy `.env.example` to `.env.local` and set:
+```
+ADMIN_PASSWORD=<pick a real password>
+KITCHEN_PASSWORD=<pick a real password>
+WAITER_PASSWORD=<pick a real password>
+```
+Without these set, no one can log in — the login API returns an error
+telling you which env var is missing.
+
+**How it works**: staff visits `/login`, picks their role, enters that role's
+password → gets an HttpOnly session cookie (12-hour expiry) → middleware lets
+them through to that section. Admin's cookie also opens Kitchen and Waiter
+(an owner should be able to check any section); Kitchen/Waiter logins are
+scoped to only their own section. Each layout has a "Logout" button that
+clears the cookie.
+
+**Before real production use**: this is single-shared-password auth, fine
+for a small single-location restaurant prototype. Move to per-staff accounts
+with hashed passwords once Phase 6's database is in place.
+
+## Real product photos
+
+Menu photos live in `public/images/menu/` — file names must match the
+`photo` field in `src/data/menu.json` exactly (e.g. `classic-shikanji.jpg`).
+`MenuCard.tsx` renders the real image automatically once the file exists at
+that path; until then it shows a "photo coming soon" placeholder — no code
+change needed either way. Recommended: JPG/WebP, ~800×600 or 1:1, under
+200KB, consistent aspect ratio across items.
+
 ## Next step: Phase 6
 
 Swap JSON file storage for PostgreSQL, add role-based login for

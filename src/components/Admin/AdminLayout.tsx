@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import { staffLogout } from "@/lib/authClient";
 
 const NAV = [
   { href: "/admin/dashboard", label: "Dashboard" },
@@ -37,9 +38,15 @@ export default function AdminLayout({ children, title }: { children: ReactNode; 
           })}
         </nav>
         <div className="border-t border-white/10 p-3">
-          <Link href="/" className="block px-3 py-2 text-s text-white/50 hover:text-white/80">
+          <Link href="/" className="block px-3 py-2 text-xs text-white/50 hover:text-white/80">
             ← Back to website
           </Link>
+          <button
+            onClick={staffLogout}
+            className="mt-1 block w-full px-3 py-2 text-left text-xs text-white/50 hover:text-white/80"
+          >
+            Logout
+          </button>
         </div>
       </aside>
 

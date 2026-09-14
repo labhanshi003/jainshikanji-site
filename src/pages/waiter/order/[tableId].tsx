@@ -88,6 +88,16 @@ export default function WaiterOrderEntry() {
     refresh(activeOrder.tableId);
   }
 
+  async function markCashCollected() {
+    if (!activeOrder) return;
+    await fetch("/api/orders", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId: activeOrder.id, paymentStatus: "paid" }),
+    });
+    refresh(activeOrder.tableId);
+  }
+
   async function completeAndFreeTable() {
     if (!activeOrder || !table) return;
     await fetch("/api/orders", {
@@ -133,13 +143,22 @@ export default function WaiterOrderEntry() {
         <div className="mb-5 rounded-xl border-2 border-orange-300 bg-orange-50 p-4">
           <div className="mb-2 flex items-center justify-between">
             <p className="text-sm font-bold text-orange-700">Current order</p>
-            <span
-              className={`rounded-full px-2.5 py-1 text-xs font-bold ${
-                isPaid ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"
-              }`}
-            >
-              {isPaid ? "Paid" : `Unpaid · ${activeOrder.paymentMethod}`}
-            </span>
+            {isPaid ? (
+              <span className="rounded-full bg-green-100 px-2.5 py-1 text-xs font-bold text-green-700">
+                Paid
+              </span>
+            ) : activeOrder.paymentMethod === "cash" ? (
+              <button
+                onClick={markCashCollected}
+                className="rounded-full bg-orange-600 px-3 py-1.5 text-xs font-bold text-white active:bg-orange-700"
+              >
+                💵 Collect ₹{activeOrder.total} Cash
+              </button>
+            ) : (
+              <span className="rounded-full bg-gray-200 px-2.5 py-1 text-xs font-bold text-gray-600">
+                Unpaid · upi
+              </span>
+            )}
           </div>
 
           <ul className="space-y-2 text-sm text-gray-700">

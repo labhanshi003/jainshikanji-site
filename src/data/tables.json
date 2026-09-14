@@ -4,28 +4,28 @@
     "name": "Table 1",
     "area": "Indoor",
     "seats": 4,
-    "status": "free"
+    "status": "occupied"
   },
   {
     "id": "t2",
     "name": "Table 2",
     "area": "Indoor",
     "seats": 2,
-    "status": "occupied"
+    "status": "free"
   },
   {
     "id": "t3",
     "name": "Table 3",
     "area": "AC Hall",
     "seats": 6,
-    "status": "occupied"
+    "status": "free"
   },
   {
     "id": "t4",
     "name": "Table 4",
     "area": "Outdoor",
     "seats": 4,
-    "status": "occupied"
+    "status": "free"
   },
   {
     "id": "t5",

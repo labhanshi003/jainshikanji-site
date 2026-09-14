@@ -8,7 +8,7 @@ import "@/styles/globals.css";
 // utilitarian look — they should NOT get the customer site's Header/Footer,
 // and deliberately do NOT get the elegant serif display font either (that's
 // a customer-facing brand touch, not a dashboard one).
-const STANDALONE_NO_STYLING_PREFIXES = ["/admin", "/kitchen", "/waiter"];
+const STANDALONE_NO_STYLING_PREFIXES = ["/admin", "/kitchen", "/waiter", "/login"];
 // QR Table Ordering is customer-facing (same elegant look, same font) but
 // still renders its own full-page layout without the site Header/Footer.
 const STANDALONE_STYLED_PREFIXES = ["/table"];

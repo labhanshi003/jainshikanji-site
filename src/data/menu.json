@@ -5,7 +5,7 @@
     "name": "Classic Jain Shikanji",
     "description": "Our original 1957 recipe \u2014 jambiri lemon, black pepper, cumin, black salt.",
     "price": 40,
-    "photo": "/images/menu/classic-shikanji.jpg",
+    "photo": "/images/menu/classicshikanji.jpg",
     "available": true
   },
   {
@@ -23,7 +23,7 @@
     "name": "Paneer Pakoda",
     "description": "The iconic pairing since 1996 \u2014 hot, crispy, served with mint chutney.",
     "price": 90,
-    "photo": "/images/menu/paneer-pakoda.jpg",
+    "photo": "/images/menu/paneer-pakoda.jpeg",
     "available": true
   },
   {
@@ -32,7 +32,7 @@
     "name": "Aloo Pakoda",
     "description": "Crispy spiced potato fritters.",
     "price": 70,
-    "photo": "/images/menu/aloo-pakoda.jpg",
+    "photo": "/images/menu/aloo-pakoda.jpeg",
     "available": true
   },
   {
@@ -41,7 +41,7 @@
     "name": "Chole Bhature",
     "description": "A Jain Shikanji restaurant favourite.",
     "price": 130,
-    "photo": "/images/menu/chole-bhature.jpg",
+    "photo": "/images/menu/chole-bhature.jpeg",
     "available": true
   },
   {
@@ -50,7 +50,7 @@
     "name": "Pav Bhaji",
     "description": "Buttery, spiced mixed-vegetable mash with soft pav.",
     "price": 120,
-    "photo": "/images/menu/pav-bhaji.jpg",
+    "photo": "/images/menu/pav-bhaji.jpeg",
     "available": true
   }
 ]

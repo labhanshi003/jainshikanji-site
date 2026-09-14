@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { Order, AggregatedKOTItem } from "@/types";
+import { staffLogout } from "@/lib/authClient";
 
 const POLL_MS = 5000; // simple polling for now — swap for WebSocket later, see README
 
@@ -145,6 +146,9 @@ export default function KitchenScreen() {
         </div>
         <div className="flex items-center gap-3">
           <span className="text-sm font-mono text-gray-500">{clock}</span>
+          <button onClick={staffLogout} className="text-xs text-gray-500 hover:text-gray-300">
+            Logout
+          </button>
           <div className="flex gap-2">
             <button
               onClick={() => setView("aggregated")}

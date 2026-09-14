@@ -4,6 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
+  
   theme: {
     extend: {
       colors: {
@@ -23,7 +24,7 @@ module.exports = {
         // "brand" colors above, so a future customer rebrand (like this one)
         // never accidentally reskins the dashboard too.
         admin: {
-          navy: "#1a2744",
+          navy: "#367588",
           accent: "#c9a24a",
         },
       },
