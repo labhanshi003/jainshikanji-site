@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/router";
 import WaiterLayout from "@/components/Waiter/WaiterLayout";
 import { MenuItem, RestaurantTable, Order } from "@/types";
@@ -15,19 +15,26 @@ export default function WaiterOrderEntry() {
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const refresh = useCallback(async (id: string) => {
+    const [tables, orders]: [RestaurantTable[], Order[]] = await Promise.all([
+      fetch("/api/admin/tables").then((r) => r.json()),
+      fetch("/api/orders?status=active").then((r) => r.json()),
+    ]);
+    setTable(tables.find((t) => t.id === id) ?? null);
+    setActiveOrder(orders.find((o) => o.tableId === id) ?? null);
+  }, []);
+
   useEffect(() => {
     if (!tableId) return;
-    Promise.all([
-      fetch("/api/admin/tables").then((r) => r.json()),
-      fetch("/api/menu").then((r) => r.json()),
-      fetch("/api/orders?status=active").then((r) => r.json()),
-    ]).then(([tables, menuData, orders]: [RestaurantTable[], MenuItem[], Order[]]) => {
-      setTable(tables.find((t) => t.id === tableId) ?? null);
-      setMenu(menuData.filter((m) => m.available));
-      setActiveOrder(orders.find((o) => o.tableId === tableId) ?? null);
-      setLoading(false);
-    });
-  }, [tableId]);
+    fetch("/api/menu")
+      .then((r) => r.json())
+      .then((menuData: MenuItem[]) => setMenu(menuData.filter((m) => m.available)));
+    refresh(tableId).then(() => setLoading(false));
+
+    // Poll so the waiter sees kitchen updates (item ready) without refreshing
+    const interval = setInterval(() => refresh(tableId), 5000);
+    return () => clearInterval(interval);
+  }, [tableId, refresh]);
 
   const grouped = useMemo(() => {
     const byCategory: Record<string, MenuItem[]> = {};
@@ -53,18 +60,13 @@ export default function WaiterOrderEntry() {
 
     const items = Object.entries(cart)
       .filter(([, qty]) => qty > 0)
-      .map(([menuItemId, quantity]) => {
-        const item = menu.find((m) => m.id === menuItemId)!;
-        return { menuItemId, name: item.name, quantity };
-      });
+      .map(([menuItemId, quantity]) => ({ menuItemId, quantity }));
 
     await fetch("/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ tableId: table.id, tableName: table.name, items, source: "waiter" }),
     });
-
-    // Mark the table occupied now that an order has been placed
     await fetch("/api/admin/tables", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -73,6 +75,31 @@ export default function WaiterOrderEntry() {
 
     setCart({});
     setSubmitting(false);
+    refresh(table.id);
+  }
+
+  async function markServed(menuItemId: string) {
+    if (!activeOrder) return;
+    await fetch("/api/orders", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId: activeOrder.id, menuItemId, itemStatus: "served" }),
+    });
+    refresh(activeOrder.tableId);
+  }
+
+  async function completeAndFreeTable() {
+    if (!activeOrder || !table) return;
+    await fetch("/api/orders", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId: activeOrder.id, orderStatus: "completed" }),
+    });
+    await fetch("/api/admin/tables", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: table.id, status: "free" }),
+    });
     router.push("/waiter");
   }
 
@@ -92,6 +119,10 @@ export default function WaiterOrderEntry() {
     );
   }
 
+  const allServed = activeOrder ? activeOrder.items.every((i) => i.status === "served") : false;
+  const isPaid = activeOrder?.paymentStatus === "paid";
+  const canFreeTable = activeOrder && allServed && isPaid;
+
   return (
     <WaiterLayout title={table.name} backHref="/waiter">
       <Head>
@@ -100,17 +131,54 @@ export default function WaiterOrderEntry() {
 
       {activeOrder && (
         <div className="mb-5 rounded-xl border-2 border-orange-300 bg-orange-50 p-4">
-          <p className="mb-2 text-sm font-bold text-orange-700">Current order in progress</p>
-          <ul className="space-y-1 text-sm text-gray-700">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="text-sm font-bold text-orange-700">Current order</p>
+            <span
+              className={`rounded-full px-2.5 py-1 text-xs font-bold ${
+                isPaid ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"
+              }`}
+            >
+              {isPaid ? "Paid" : `Unpaid · ${activeOrder.paymentMethod}`}
+            </span>
+          </div>
+
+          <ul className="space-y-2 text-sm text-gray-700">
             {activeOrder.items.map((i) => (
-              <li key={i.menuItemId} className="flex justify-between">
+              <li key={i.menuItemId} className="flex items-center justify-between">
                 <span>{i.name} ×{i.quantity}</span>
-                <span className={i.status === "ready" ? "text-green-600" : "text-gray-400"}>
-                  {i.status === "ready" ? "Ready" : "Preparing"}
-                </span>
+                {i.status === "served" ? (
+                  <span className="text-xs font-semibold text-gray-400">Served ✓</span>
+                ) : i.status === "ready" ? (
+                  <button
+                    onClick={() => markServed(i.menuItemId)}
+                    className="rounded-lg bg-green-500 px-3 py-1.5 text-xs font-bold text-white active:bg-green-600"
+                  >
+                    Mark Served
+                  </button>
+                ) : (
+                  <span className="text-xs text-gray-400">Preparing</span>
+                )}
               </li>
             ))}
           </ul>
+
+          <div className="mt-3 flex items-center justify-between border-t border-dashed border-orange-200 pt-3 text-sm">
+            <span className="text-gray-600">Total</span>
+            <span className="font-bold text-gray-800">₹{activeOrder.total}</span>
+          </div>
+
+          {canFreeTable ? (
+            <button
+              onClick={completeAndFreeTable}
+              className="mt-3 w-full rounded-xl bg-teal-700 py-3 text-sm font-bold text-white active:bg-teal-800"
+            >
+              Complete Order &amp; Free Table
+            </button>
+          ) : (
+            <p className="mt-3 text-center text-xs text-gray-500">
+              {!allServed ? "Serve all items" : "Waiting for payment"} before this table can be freed.
+            </p>
+          )}
         </div>
       )}
 

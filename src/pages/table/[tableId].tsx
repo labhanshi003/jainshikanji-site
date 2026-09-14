@@ -151,7 +151,9 @@ export default function TableOrderingPage() {
     window.location.href = buildUpiLink(activeOrder.total, activeOrder.id);
   }
 
-  const allItemsReady = activeOrder ? activeOrder.items.every((i) => i.status === "ready") : false;
+  const allItemsReady = activeOrder
+    ? activeOrder.items.every((i) => i.status === "ready" || i.status === "served")
+    : false;
   const etaLabel = useReadyCountdown(activeOrder?.estimatedReadyAt, allItemsReady);
 
   if (loading) {
@@ -202,8 +204,16 @@ export default function TableOrderingPage() {
             {activeOrder.items.map((i) => (
               <li key={i.menuItemId} className="flex justify-between">
                 <span>{i.name} ×{i.quantity}</span>
-                <span className={i.status === "ready" ? "font-semibold text-green-600" : "text-gray-400"}>
-                  {i.status === "ready" ? "Ready" : "Preparing"}
+                <span
+                  className={
+                    i.status === "served"
+                      ? "font-semibold text-gray-400"
+                      : i.status === "ready"
+                      ? "font-semibold text-green-600"
+                      : "text-gray-400"
+                  }
+                >
+                  {i.status === "served" ? "Served" : i.status === "ready" ? "Ready" : "Preparing"}
                 </span>
               </li>
             ))}

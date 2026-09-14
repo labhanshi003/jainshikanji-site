@@ -32,10 +32,9 @@ export default function WaiterHome() {
     return () => clearInterval(interval);
   }, []);
 
+  const orderByTableId = new Map(orders.map((o) => [o.tableId, o]));
   const readyToServeTableIds = new Set(
-    orders
-      .filter((o) => o.items.some((i) => i.status === "ready"))
-      .map((o) => o.tableId)
+    orders.filter((o) => o.items.some((i) => i.status === "ready")).map((o) => o.tableId)
   );
   const readyCount = readyToServeTableIds.size;
 
@@ -57,6 +56,10 @@ export default function WaiterHome() {
         <div className="grid grid-cols-2 gap-3">
           {tables.map((t) => {
             const readyToServe = readyToServeTableIds.has(t.id);
+            const order = orderByTableId.get(t.id);
+            const servedCount = order ? order.items.filter((i) => i.status === "served").length : 0;
+            const totalCount = order ? order.items.length : 0;
+
             return (
               <Link
                 key={t.id}
@@ -82,6 +85,21 @@ export default function WaiterHome() {
                 >
                   {readyToServe ? "Ready to serve!" : t.status === "free" ? "Free" : "Occupied"}
                 </p>
+
+                {order && (
+                  <div className="mt-2 space-y-1 border-t border-black/5 pt-2">
+                    <p className="text-xs font-medium text-gray-500">
+                      Order placed · {servedCount}/{totalCount} served
+                    </p>
+                    <p
+                      className={`text-xs font-semibold ${
+                        order.paymentStatus === "paid" ? "text-green-600" : "text-gray-400"
+                      }`}
+                    >
+                      {order.paymentStatus === "paid" ? "Paid ✓" : `Unpaid · ${order.paymentMethod}`}
+                    </p>
+                  </div>
+                )}
               </Link>
             );
           })}

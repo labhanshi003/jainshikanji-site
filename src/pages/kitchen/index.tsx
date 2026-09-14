@@ -9,7 +9,7 @@ function aggregate(orders: Order[]): (AggregatedKOTItem & { oldestCreatedAt: str
 
   for (const order of orders) {
     for (const item of order.items) {
-      if (item.status === "ready") continue;
+      if (item.status !== "pending") continue; // only kitchen-pending items belong in the KOT queue
       const existing = map.get(item.menuItemId);
       const contribution = { orderId: order.id, tableName: order.tableName, quantity: item.quantity };
       if (existing) {
@@ -120,7 +120,7 @@ export default function KitchenScreen() {
 
   const aggregated = useMemo(() => aggregate(orders), [orders]);
   const pendingItemCount = aggregated.reduce((sum, g) => sum + g.totalQuantity, 0);
-  const activeTableCount = new Set(orders.filter((o) => o.items.some((i) => i.status !== "ready")).map((o) => o.tableId)).size;
+  const activeTableCount = new Set(orders.filter((o) => o.items.some((i) => i.status === "pending")).map((o) => o.tableId)).size;
   const hasPendingWork = aggregated.length > 0;
 
   return (
@@ -212,7 +212,7 @@ export default function KitchenScreen() {
         ) : (
           <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
             {orders
-              .filter((o) => o.items.some((i) => i.status !== "ready"))
+              .filter((o) => o.items.some((i) => i.status === "pending"))
               .map((order) => {
                 const mins = Math.floor((Date.now() - new Date(order.createdAt).getTime()) / 60000);
                 const { border, pulse } = urgencyStyle(mins);
@@ -226,7 +226,7 @@ export default function KitchenScreen() {
                     </div>
                     <ul className="space-y-3">
                       {order.items
-                        .filter((i) => i.status !== "ready")
+                        .filter((i) => i.status === "pending")
                         .map((item) => (
                           <li key={item.menuItemId} className="flex items-center justify-between">
                             <span className="text-lg font-semibold">

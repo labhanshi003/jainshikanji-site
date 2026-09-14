@@ -87,7 +87,7 @@ export function buildOrder(input: {
 export function setOrderItemStatus(
   orderId: string,
   menuItemId: string,
-  status: "pending" | "ready"
+  status: "pending" | "ready" | "served"
 ): Order[] {
   const all = getAllOrders();
   const updated = all.map((order) => {

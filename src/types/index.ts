@@ -63,7 +63,7 @@ export interface OrderItem {
   name: string;
   quantity: number;
   price: number; // snapshot of the menu price at order time — bill stays correct even if price changes later
-  status: "pending" | "ready";
+  status: "pending" | "ready" | "served";
 }
 
 export interface Order {
